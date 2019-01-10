@@ -12,5 +12,7 @@ h1{
     text-align: center;   
 }
 .button{
-    
+    position:fixed;
+    left:0;
+    bottom: 0;
 }

@@ -4,7 +4,22 @@
   Online Certification 
       <span style="margin-left:900px;">{{hoursDisplay ? hoursDisplay : '00'}} : {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}} <br/>
       </span></h1>
+      <div *ngFor="let res of response1" style="margin-left:20px;">
+          <form [formGroup]="signupForm">
+        Qn:{{res.q}}<div></div>
+        <div>1.{{res.o1}}</div>
+        <div>2.{{res.o2}}</div>
+        <div>3.{{res.o3}}</div>
+        <div>4.{{res.o4}}</div>
+        <!-- 2.{{res.o2}}
+        3.{{res.o3}}
+        4.{{res.o4}} -->
+        An:<mat-form-field appearance="standard">
+            <input matInput required>
+        </mat-form-field>
+        </form>
+      </div>
   <div class="button">
-  <button mat-raised-button style="margin-left:585px;" (click)="login()">Cancel</button>
-  <button mat-raised-button style="margin-left:20px;" (click)="login()">Reset</button>
+  <button mat-raised-button style="margin-left:585px;" (click)="cancel()" color=warn>Cancel</button>
+  <button mat-raised-button style="margin-left:20px;" (click)="reset()">Reset</button>
   <button mat-raised-button style="margin-left:20px;" (click)="login()" color=primary>Submit</button></div>
