@@ -1,0 +1,38 @@
+[
+    {
+        "username": "lavanya",        
+        "email": "lg@gmail.com",
+        "city": "mss",
+        "state": "mdp",
+        "country":"india",
+        "phone":"9090909090",
+        "qualification":"btech"
+    },
+    {
+        "username": "deepthi",
+        "email": "dy@gmail.com",
+        "city": "mss",
+        "state": "mdp",
+        "country":"india",
+        "phone":"9090909090",
+        "qualification":"btech"
+    },
+    {
+        "username": "vanitha",
+        "email": "vk@gmail.com",
+        "city": "mss",
+        "state": "mdp",
+        "country":"india",
+        "phone":"9090909090",
+        "qualification":"btech"
+    },
+    {
+        "username": "aamani",
+        "email": "ak@gmail.com",
+        "city": "mss",
+        "state": "mdp",
+        "country":"india",
+        "phone":"9090909090",
+        "qualification":"btech"
+    }
+]

@@ -1,0 +1,15 @@
+h2{
+    color:rgb(50, 50, 189);
+}
+.reg{
+    text-align: center;
+}
+.div1{
+    float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px;
+}
+* {
+    box-sizing: border-box;
+  }

@@ -1,0 +1,40 @@
+<form align=center [formGroup]="signupForm">
+  <div class="form-group">
+    <table border="2" align=center cellspacing=20px>
+      <caption>
+        <h2>Change Password</h2>
+      </caption>
+      <tr>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Old Password</mat-label>
+          <input matInput type="password" id="input" formControlName="password" [formGroup]="signupForm" [(ngModel)]="password" required>
+          <mat-icon matSuffix (click)="function()">visibility_off</mat-icon>
+          <!-- <mat-hint>
+            <mat-error *ngIf="!signupForm.get('userData.password').valid && signupForm.get('userData.password').touched">Please enter password!</mat-error>
+          </mat-hint> -->
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter New Password</mat-label>
+          <input matInput type="password" id="input1" formControlName="npassword" [formGroup]="signupForm" [(ngModel)]="npassword" required>
+          <mat-icon matSuffix (click)="function1()">visibility_off</mat-icon>
+          <!-- <mat-hint>
+            <mat-error *ngIf="!signupForm.get('userData.npassword').valid && signupForm.get('userData.npassword').touched">Please enter new password!</mat-error>
+          </mat-hint> -->
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field appearance="fill">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type="password" id="input2" formControlName="cpassword" [formGroup]="signupForm" [(ngModel)]="cpassword" required>
+          <mat-icon matSuffix (click)="function2()">visibility_off</mat-icon>
+          <!-- <mat-hint>
+            <mat-error *ngIf="!signupForm.get('userData.cpassword').valid && signupForm.get('userData.cpassword').touched">Please enter confirm password!</mat-error>
+          </mat-hint> -->
+        </mat-form-field>
+      </tr>
+      <button mat-raised-button (click)="change();" color=primary>Submit</button>
+    </table>
+  </div>
+</form>

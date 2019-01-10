@@ -1,0 +1,54 @@
+/* .table{
+    padding-left:385px;
+  } */
+  /* table {
+    width: 100%;
+  } */
+  
+  /* th.mat-sort-header-sorted {
+    color: black;
+  } */
+
+/* .mat-form-field {
+  font-size: 14px;
+  width: 100%;
+} */
+.example-card {
+  width:100%;
+  margin: 10px;
+  color:rgb(50, 50, 189);
+  left: 0;
+   top: 0;
+}
+
+/* .title{
+   padding-top:20px; 
+  padding-left:20px;
+  /* padding-bottom:20px;
+} */
+/* .div{
+  padding-left:50px;
+} */
+.contain{
+  position:fixed;
+  width:100%;
+  left: 0;
+   bottom: 0;
+  /* padding-top:100%; */
+}
+/* mat-grid-tile {
+  background: lightblue;
+} */
+h1{
+  color:rgb(50, 50, 189);
+  width:100%;
+  padding-left:20px;
+  padding-top:10px;
+  padding-bottom:10px;
+  background-color:rgb(188, 245, 245);
+}
+button{
+  margin-top:10px;
+  margin-right:15px;
+  margin-left:15px;
+}

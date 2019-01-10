@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+/* @import "@material/textfield/icon/mdc-text-field-icon"; */
+.green-snackbar {
+    background:rgb(21, 177, 117);
+  }
+  .red-snackbar {
+    background:rgb(252, 31, 31);
+  }
+  

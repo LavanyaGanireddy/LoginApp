@@ -1,0 +1,10 @@
+
+<h1><i class="fa fa-user-circle-o" style="font-size:50px;"></i>
+  <!-- <mat-card-title class="title" style="font-size:40px;"> -->
+  Online Certification 
+      <span style="margin-left:900px;">{{hoursDisplay ? hoursDisplay : '00'}} : {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}} <br/>
+      </span></h1>
+  <div class="button">
+  <button mat-raised-button style="margin-left:585px;" (click)="login()">Cancel</button>
+  <button mat-raised-button style="margin-left:20px;" (click)="login()">Reset</button>
+  <button mat-raised-button style="margin-left:20px;" (click)="login()" color=primary>Submit</button></div>
