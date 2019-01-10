@@ -21,65 +21,69 @@ export class ExamComponent implements OnInit {
   sub: Subscription;
   length;
   minutes;
-  seconds=3;
+  seconds = 3;
   tech;
   qid;
   answer;
-  i;
+
+  // entries = [];
+  // selectedEntry;
+  // onSelectionChange(entry) {
+  //   this.selectedEntry = entry;
+  //   console.log(this.selectedEntry);
+  // }
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private alertService: AlertService, private detailService: DetailService) { }
 
   public technology1: string;
   // route;
+
   ngOnInit() {
-  
+
     // setTimeout(() => {
     //   // if(this.examfinished!=1)
     //   // this.examresult();
     // }, 30000);
 
 
-    setInterval(() => {
+    // setInterval(() => {
 
-      this.minutes=this.minutes-1;
-      if(this.minutes==0){
-        alert("Exam Over");
-          //this.submit();
-
-
-      }
-      if(this.minutes<0){
-        this.minutes=0;
-        
-      }
-    }, 60000);
-
-    setInterval(() => {
-
-      this.seconds=this.seconds-1;
-      for(this.i=0;this.i<=this.minutes;this.i++){
-        if(this.seconds<0){
-          this.seconds=0;
-        }
-        if(this.seconds==0){
-          
-        }
-        }
-      
-      // if(this.seconds==0){
-      //   //alert("Exam Over");
-      //     //this.submit();
+    //   this.minutes = this.minutes - 1;
+    //   if (this.minutes == 0) {
+    //     alert("Exam Over");
+    //     //this.submit();
 
 
-      // }
-      
-    }, 1000);
-   
+    //   }
+    //   if (this.minutes < 0) {
+    //     this.minutes = 0;
+
+    //   }
+    // }, 60000);
+
+    // setInterval(() => {
+
+    //   this.seconds = this.seconds - 1;
+    //   if (this.minutes <= 0) {
+    //     if (this.seconds < 0) {
+    //       this.seconds = 0;
+
+    //     }
+    //   }
+    //   if (this.seconds == 0) {
+    //     alert("Exam Over");
+    //     // this.submit();
+
+
+    //   }
+
+    // }, 1000);
+
 
 
 
     this.signupForm = new FormGroup({
       'userData': new FormGroup({
-        answer:new FormControl(null, [Validators.required])
+        option: new FormControl()
       }),
     });
     this.technology1 = this.route.snapshot.queryParamMap.get('technology');
@@ -87,17 +91,17 @@ export class ExamComponent implements OnInit {
     // this.sub.subscribe((val) => this.technology = val));
     // console.log(this.technology);
     var token = "";
-    var a = new Headers({"token":token});
+    var a = new Headers({ "token": token });
     a.append('Content-Type', 'application/json');
 
     this.http.get('http://172.17.15.68:3000/users/getQuestions?technology=' + this.technology1)
       .subscribe(response => {
-        
-        this.response1=response.questions;
-        this.length=response.questions.length;
-        this.minutes=this.length;
-        this.tech=response.technology;
-        this.qid=response.qid;
+
+        this.response1 = response.questions;
+        this.length = response.questions.length;
+        this.minutes = this.length;
+        this.tech = response.technology;
+        this.qid = response.qid;
         console.log(this.technology1);
         console.log(this.length);
         console.log(this.tech);
@@ -112,18 +116,18 @@ export class ExamComponent implements OnInit {
     //   })
   }
 
-submit(){
-  // alert('hello....')
+  submit() {
+    // alert('hello....')
 
-  this.http.post('http://172.17.15.68:3000/users/addTransaction', {
-    email : this.detailService.email,
-    userName:this.detailService.userName,
-    technology:this.tech,
-    technologyCode:this.technology1,
-    questions:[{
-      qid:this.qid,
-      answer:this.signupForm.value.userData.answer
-    }]
+    this.http.post('http://172.17.15.68:3000/users/addTransaction', {
+      email: this.detailService.email,
+      userName: this.detailService.userName,
+      technology: this.tech,
+      technologyCode: this.technology1,
+      questions: [{
+        qid: this.qid,
+        answer: this.signupForm.get('option').value
+      }]
     })
       .subscribe(
         res => {
@@ -136,12 +140,12 @@ submit(){
           // this.alertService.warn('Registration failed!!!');
         }
       );
-this.router.navigateByUrl('/first');
-}
-  cancel(){
     this.router.navigateByUrl('/first');
   }
-  reset(){
+  cancel() {
+    this.router.navigateByUrl('/first');
+  }
+  reset() {
     this.signupForm.reset();
   }
 }

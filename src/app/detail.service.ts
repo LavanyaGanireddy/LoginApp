@@ -17,7 +17,10 @@ export class DetailService {
   email;
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) { }
   public retrieve(email, password) {
-    this.http.get('http://172.17.15.68:3000/users/userLogin/' + email + '/' + password)
+    this.http.post('http://172.17.15.68:3000/users/userLogin/',{
+      email:email,
+      password:password
+    })
       .subscribe(
         (data) => {
           this.obj = data;

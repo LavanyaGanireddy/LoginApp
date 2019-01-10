@@ -22,3 +22,18 @@ h1{
   border: 1px solid  #57acec;
  
 }
+/* .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  } */
+  /* .radio{
+    color:rgb(50, 50, 189);
+  } */
+  /* .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: rgb(66, 134, 244);
+  }
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: rgb(66, 134, 244);
+  }
+  .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color:rgba(66, 134, 244,.26);
+  } */
