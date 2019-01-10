@@ -2,30 +2,31 @@
   <i class="fa fa-user-circle-o" style="font-size:50px;"></i>
   <!-- <mat-card-title class="title" style="font-size:40px;"> -->
   Online Certification
+  <span style="margin-left:980px;">{{minutes}}:{{seconds}}</span>
   <!-- <span style="margin-left:900px;">{{hoursDisplay ? hoursDisplay : '00'}} : {{(minutesDisplay) && (minutesDisplay<=5 9) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <=5 9) ? secondsDisplay : '00'}} 
   </span> -->
 </h1>
-<div>
-  <div>
+<div class="margin">
+
     <h2>Instructions to write the Exam:</h2>
-    <div style="margin-left:570px;">
+    <div style="margin-left:580px;">
       <p>1. Write the exam within the time limit.</p>
       <p>2. Please provide answers for all questions.</p>
       <p>3. Please provide the answer in the blank.</p>
     </div>
-  </div>
-  <mat-divider></mat-divider>
+   
 </div>
+<mat-divider style="margin-bottom:20px;"></mat-divider>
 <div *ngFor="let res of response1" style="margin-left:40px;">
   <form [formGroup]="signupForm">
-    <div>Qn: {{res.q}}</div>
+    <div>Question: {{res.q}}</div>
     <div style="margin-top:20px;">1. {{res.o1}}</div>
     <div>2. {{res.o2}}</div>
     <div>3. {{res.o3}}</div>
     <div>4. {{res.o4}}</div>
     <div formGroupName="userData">
-      An:
-      <mat-form-field appearance="standard" style="width:40%;margin-bottom:20px;">
+      Answer:
+      <mat-form-field appearance="standard" style="width:40%;margin-bottom:10px;">
         <input matInput formControlName="answer" required>
       </mat-form-field>
     </div>

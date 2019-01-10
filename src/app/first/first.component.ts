@@ -51,6 +51,7 @@ export class FirstComponent implements OnInit {
   NG1001;
   constructor(private http: HttpClient, private router: Router, public dialog: MatDialog, private alertService: AlertService, private detailService: DetailService, private confirmService: ConfirmService, private examService: ExamService) {
     this.user = detailService.userName;
+    console.log(this.user);
   }
 
   ngOnInit() {

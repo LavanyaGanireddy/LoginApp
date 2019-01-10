@@ -9,7 +9,7 @@ h1{
   h2 {
     color: #57acec;
     margin-top: 24px; 
-    text-align: center;   
+    text-align: center;
 }
 .button{
     position:fixed;
@@ -17,6 +17,8 @@ h1{
     bottom: 0;
 }
 .margin{
-    margin: 70px;
-  border: 1px solid #4CAF50;
+   /* padding-left:200px; */
+   /* text-align: center;  */
+  border: 1px solid  #57acec;
+ 
 }
