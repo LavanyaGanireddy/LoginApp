@@ -25,7 +25,7 @@ export class ExamComponent implements OnInit {
     // this.startTimer();
     this.signupForm = new FormGroup({
       'userData': new FormGroup({
-        
+        answer:new FormControl(null, [Validators.required])
       }),
     });
     this.technology = this.route.snapshot.queryParamMap.get('technology');
