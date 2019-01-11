@@ -1,10 +1,7 @@
 <h1>
   <i class="fa fa-user-circle-o" style="font-size:50px;"></i>
-  <!-- <mat-card-title class="title" style="font-size:40px;"> -->
   Online Certification
-  <span style="margin-left:980px;">{{minutes-1}}:{{seconds}}</span>
-  <!-- <span style="margin-left:900px;">{{hoursDisplay ? hoursDisplay : '00'}} : {{(minutesDisplay) && (minutesDisplay<=5 9) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <=5 9) ? secondsDisplay : '00'}} 
-  </span> -->
+  <span style="margin-left:1180px;">{{seconds}}seconds</span>
 </h1>
 <div class="margin">
 
@@ -18,22 +15,22 @@
 </div>
 <mat-divider style="margin-bottom:20px;"></mat-divider>
 <div *ngFor="let res of response1" style="margin-left:40px;">
-  <form [formGroup]="signupForm">
-    <div style="font-size: 20px;"><b>Question:</b> {{res.q}}</div>
-    <mat-radio-group style="font-size: 18px;">
-        <div><mat-radio-button [value]="1" formControlName="option" style="margin-top:10px;" color=primary>{{res.o1}}</mat-radio-button></div>
-        <div><mat-radio-button [value]="2" formControlName="option" style="margin-top:10px;" color=primary>{{res.o2}}</mat-radio-button></div>
-        <div><mat-radio-button [value]="3" formControlName="option" style="margin-top:10px;" color=primary>{{res.o3}}</mat-radio-button></div>
-        <div><mat-radio-button [value]="4" formControlName="option" style="margin-top:10px;" color=primary>{{res.o4}}</mat-radio-button></div>
+  <!-- <form [formGroup]="signupForm"> -->
+    <div style="font-size: 18px;margin-top:10px;"><b>Question:</b> {{res.q}}</div>
+    <mat-radio-group style="font-size: 15px;">
+        <div><mat-radio-button [value]="1" style="margin-top:10px;" color=primary>{{res.o1}}</mat-radio-button></div>
+        <div><mat-radio-button [value]="2" style="margin-top:10px;" color=primary>{{res.o2}}</mat-radio-button></div>
+        <div><mat-radio-button [value]="3" style="margin-top:10px;" color=primary>{{res.o3}}</mat-radio-button></div>
+        <div><mat-radio-button [value]="4" style="margin-top:10px;margin-bottom:10px;" color=primary>{{res.o4}}</mat-radio-button></div>
       </mat-radio-group>
-
+      <!-- formControlName="option"  -->
     <!-- <div formGroupName="userData">
       Answer:
       <mat-form-field appearance="standard" style="width:40%;margin-bottom:10px;">
         <input matInput formControlName="answer" required>
       </mat-form-field>
     </div> -->
-  </form>
+  <!-- </form> -->
 </div>
 <div class="button">
   <button mat-raised-button style="margin-left:585px;" (click)="cancel()" color=warn>Cancel</button>

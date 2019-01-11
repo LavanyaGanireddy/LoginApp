@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { AlertService } from '../alert.service';
+import { DetailService } from '../detail.service';
+import { ExamService } from '../exam.service';
 
 @Component({
   selector: 'app-password',
@@ -11,7 +13,8 @@ import { AlertService } from '../alert.service';
 export class PasswordComponent implements OnInit {
   signupForm: FormGroup;
   email;
-  constructor(private http: HttpClient,private alertService: AlertService) { }
+  token;
+  constructor(private http: HttpClient,private alertService: AlertService,private examService: ExamService,private detailService: DetailService) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -25,9 +28,17 @@ export class PasswordComponent implements OnInit {
   }
 
   password() {
+    this.examService.token1;
+console.log('ffgh',this.examService.token1);
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'token': this.examService.token1
+  })
+};
     this.http.post('http://172.17.15.68:3000/users/forgotPassword', {
       email: this.signupForm.value.userData.email
-    }).subscribe(
+    },httpOptions).subscribe(
       (data) => {
         console.log(data);
         this.alertService.success('Password has been sent to your Email!!!');

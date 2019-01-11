@@ -41,6 +41,11 @@
 .title{
   padding-top:20px; 
  padding-left:20px;
+ width:100%;
+ margin: 10px;
+ color:rgb(50, 50, 189);
+ left: 0;
+  top: 0;
  /* padding-bottom:20px; */
 }
 .contain{
@@ -71,5 +76,5 @@ h1{
   padding-left:20px;
   padding-top:10px;
   padding-bottom:10px;
-  background-color:rgb(188, 245, 245);
+  /* background-color:rgb(188, 245, 245); */
 }

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { AlertService } from '../alert.service';
+import { DetailService } from '../detail.service';
+import { ExamService } from '../exam.service';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +27,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
-  constructor(private http: HttpClient, private router: Router, public dialogRef: MatDialogRef<RegisterComponent>, private alertService: AlertService) { }
+  constructor(private http: HttpClient, private router: Router,private examService: ExamService,private detailService: DetailService, public dialogRef: MatDialogRef<RegisterComponent>, private alertService: AlertService) { }
   // , private alertService: AlertService
 
   countries = [
@@ -81,7 +83,14 @@ export class RegisterComponent implements OnInit {
     // if (this.registerForm.invalid) {
     //   return;
     // }
-
+    this.examService.token1;
+    console.log('ffgh',this.examService.token1);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': this.examService.token1
+      })
+    };
     this.http.post('http://172.17.15.68:3000/users/addUser', {
       userName: this.signupForm.value.userData.userName,
       email: this.signupForm.value.userData.email,
@@ -90,7 +99,7 @@ export class RegisterComponent implements OnInit {
       country: this.signupForm.value.userData.country,
       phoneNo: this.signupForm.value.userData.phoneNo,
       qualification: this.signupForm.value.userData.qualification
-    })
+    },httpOptions)
       .subscribe(
         res => {
           console.log(res);

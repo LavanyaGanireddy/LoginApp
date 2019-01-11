@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, timer, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../alert.service';
 import { DetailService } from '../detail.service';
+import { ExamService } from '../exam.service';
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
@@ -20,104 +21,124 @@ export class ExamComponent implements OnInit {
   response1;
   sub: Subscription;
   length;
-  minutes;
+  // minutes;
   seconds = 3;
   tech;
   qid;
   answer;
-
+  token;
   // entries = [];
   // selectedEntry;
   // onSelectionChange(entry) {
   //   this.selectedEntry = entry;
   //   console.log(this.selectedEntry);
   // }
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private alertService: AlertService, private detailService: DetailService) { }
+  constructor(private http: HttpClient, private examService: ExamService, private router: Router, private route: ActivatedRoute, private alertService: AlertService, private detailService: DetailService) { }
 
   public technology1: string;
-  // route;
+  // countDownDate;
+  // now;
+  // distance;
+  // x;
 
   ngOnInit() {
-
+    // this.msToTime(10000);
     // setTimeout(() => {
     //   // if(this.examfinished!=1)
     //   // this.examresult();
     // }, 30000);
 
-
     // setInterval(() => {
-
     //   this.minutes = this.minutes - 1;
     //   if (this.minutes == 0) {
     //     alert("Exam Over");
     //     //this.submit();
-
-
     //   }
     //   if (this.minutes < 0) {
     //     this.minutes = 0;
-
     //   }
     // }, 60000);
 
-    // setInterval(() => {
-
-    //   this.seconds = this.seconds - 1;
-    //   if (this.minutes <= 0) {
-    //     if (this.seconds < 0) {
-    //       this.seconds = 0;
-
-    //     }
-    //   }
-    //   if (this.seconds == 0) {
-    //     alert("Exam Over");
-    //     // this.submit();
 
 
-    //   }
+    // this.cal(this.length);
 
-    // }, 1000);
-
-
-
-
-    this.signupForm = new FormGroup({
-      'userData': new FormGroup({
-        option: new FormControl()
-      }),
-    });
+    // this.signupForm = new FormGroup({
+    //   'userData': new FormGroup({
+    //     option: new FormControl()
+    //   }),
+    // });
     this.technology1 = this.route.snapshot.queryParamMap.get('technology');
-    // .map((params) => params.get('a'));
-    // this.sub.subscribe((val) => this.technology = val));
-    // console.log(this.technology);
-    var token = "";
-    var a = new Headers({ "token": token });
-    a.append('Content-Type', 'application/json');
 
-    this.http.get('http://172.17.15.68:3000/users/getQuestions?technology=' + this.technology1)
+    // var token = "";
+    // var a = new Headers({ "token": token });
+    // a.append('Content-Type', 'application/json');
+    this.examService.token1;
+    console.log('ffgh', this.examService.token1);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': this.examService.token1
+      })
+    };
+    this.http.get('http://172.17.15.68:3000/users/getQuestions?technologyCode=' + this.technology1, httpOptions)
       .subscribe(response => {
-
         this.response1 = response.questions;
         this.length = response.questions.length;
-        this.minutes = this.length;
+        this.seconds = this.length * 60000;
         this.tech = response.technology;
         this.qid = response.qid;
         console.log(this.technology1);
         console.log(this.length);
         console.log(this.tech);
         console.log(response);
-        // this.router.navigateByUrl('/');
-        // this.alertService.success('Your Account has been deleted successfully!!!');
-        // this.result='Deleted successfully!!!';
       })
-    // },
-    //   err => {
-    //     console.log('Error occured');
-    //   })
+    setInterval(() => {
+
+      this.seconds = this.seconds - 1;
+      if (this.seconds < 0) {
+        this.seconds = 0;
+      }
+
+      if (this.seconds == 0) {
+        alert("Exam Over");
+        this.submit();
+
+      }
+
+    }, 1000);
   }
+  // cal(len){
+  //   this.countDownDate = len;
+  //   console.log("sdgdfg",len);
+  //   this.now = new Date().getTime();
+  //   this.distance = this.countDownDate - this.now;
+  //   this.x = setInterval(() => {
+  //     this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000),
+  //       this.minutes = Math.floor((this.distance % (1000 * 60 * 60)) / (1000 * 60))
+  //   }, 1000);
+  //   console.log("nksdfhksdjf",this.minutes, ":", this.seconds);
+  //   if (this.distance < 0) {
+  //     clearInterval(this.x);
+  //   }
+  // }
+
+  // msToTime(duration) {
+  //   // this.milliseconds = +((duration % 1000) / 100),
+  //   this.seconds = +((duration / 1000) % 60),
+  //     this.minutes = +((duration / (1000 * 60)) % 60),
+  //     //this.hours = +((duration / (1000 * 60 * 60)) % 24);
+
+  //     //this.hours = (this.hours < 10) ? "0" + this.hours : this.hours;
+  //     this.minutes = (this.minutes < 10) ? "0" + this.minutes : this.minutes;
+  //   this.seconds = (this.seconds < 10) ? "0" + this.seconds : this.seconds;
+  //   this.min = Math.floor(this.minutes)
+  //   this.sec = Math.floor(this.seconds)
+  //   console.log(`In console: ${Math.floor(this.minutes)} : ${Math.floor(this.seconds)}`);
+  //   return this.minutes + ":" + this.seconds;
+  // }
 
   submit() {
-    // alert('hello....')
 
     this.http.post('http://172.17.15.68:3000/users/addTransaction', {
       email: this.detailService.email,
@@ -140,6 +161,7 @@ export class ExamComponent implements OnInit {
           // this.alertService.warn('Registration failed!!!');
         }
       );
+
     this.router.navigateByUrl('/first');
   }
   cancel() {

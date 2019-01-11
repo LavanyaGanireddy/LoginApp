@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -49,6 +49,7 @@ export class FirstComponent implements OnInit {
   NG1101;
   DB1001;
   NG1001;
+  token;
   constructor(private http: HttpClient, private router: Router, public dialog: MatDialog, private alertService: AlertService, private detailService: DetailService, private confirmService: ConfirmService, private examService: ExamService) {
     this.user = detailService.userName;
     console.log(this.user);
@@ -84,8 +85,16 @@ export class FirstComponent implements OnInit {
 
   openConfirmationDialog() {
     this.email = this.detailService.email;
-    if (confirm("Are you sure you want to delete account...?")) {
-      this.http.delete('http://172.17.15.68:8090/deleteUser?email=' + this.email)
+    console.log('email',this.email);
+    this.examService.token1;
+    console.log('ffgh',this.examService.token1);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': this.examService.token1
+      })
+    };
+      this.http.delete('http://172.17.15.68:3000/deleteUser?email=' + this.email,httpOptions)
         .subscribe(res => {
           // console.log(this.id);
           console.log(res);
@@ -96,7 +105,7 @@ export class FirstComponent implements OnInit {
           err => {
             console.log('Error occured');
           })
-    }
+    
     // this.confirmService.confirm('Please confirm..', 'Do you really want to ... ?')
     // .then((confirmed) => console.log('User confirmed:', confirmed))
     // .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
