@@ -1,15 +1,6 @@
-/* table {
-    width: 100%;
-  } */
-  
-  /* th.mat-sort-header-sorted {
-    color: black;
-  } */
-
 .mat-form-field {
   font-size: 14px;
   float:right;
-  /* width: 100%; */
 }
 .button{
   padding-right:20px;
@@ -27,10 +18,6 @@
   width: 23%;
   margin-bottom: 2%;
 }
-/* .example-card {
-  margin: 10px;
-  color:rgb(50, 50, 189);
-} */
 .example-card {
   width:100%;
   margin: 10px;
@@ -46,15 +33,11 @@
  color:rgb(50, 50, 189);
  left: 0;
   top: 0;
- /* padding-bottom:20px; */
 }
 .contain{
   position:fixed;
   width:100%;
-  /* left: 0; */
-  /* padding-bottom:10px; */
-   bottom: 0;
-  /* padding-top:100%; */
+  bottom: 0;
 }
 mat-grid-tile {
   background: lightblue;
@@ -62,10 +45,6 @@ mat-grid-tile {
 mat-accordion{
   float:right;
 }
-/* mat-divider{
-  float:right;
-  width:20%;
-} */
 .image{
   padding-top:120px;
   padding-left:100px;
@@ -75,6 +54,5 @@ h1{
   width:100%;
   padding-left:20px;
   padding-top:10px;
-  padding-bottom:10px;
-  /* background-color:rgb(188, 245, 245); */
+  padding-bottom:10px;  
 }

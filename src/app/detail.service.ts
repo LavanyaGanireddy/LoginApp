@@ -26,12 +26,13 @@ export class DetailService {
 // console.log(this.token1);
         
 // this.examService.token();
-this.examService.token1;
-console.log('ffgh',this.examService.token1);
+// this.examService.token1;
+this.token1=localStorage.getItem("token")
+console.log('ffgh',this.token1);
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'token': this.examService.token1
+    'token': this.token1
   })
 };
         this.http.post('http://172.17.15.68:3000/users/userLogin/', {

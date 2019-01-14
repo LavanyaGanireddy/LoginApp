@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
+  token1;
   constructor(private http: HttpClient, private router: Router,private examService: ExamService,private detailService: DetailService, public dialogRef: MatDialogRef<RegisterComponent>, private alertService: AlertService) { }
   // , private alertService: AlertService
 
@@ -83,14 +84,14 @@ export class RegisterComponent implements OnInit {
     // if (this.registerForm.invalid) {
     //   return;
     // }
-    this.examService.token1;
-    console.log('ffgh',this.examService.token1);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': this.examService.token1
-      })
-    };
+    this.token1=localStorage.getItem("token")
+console.log('ffgh',this.token1);
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'token': this.token1
+  })
+};
     this.http.post('http://172.17.15.68:3000/users/addUser', {
       userName: this.signupForm.value.userData.userName,
       email: this.signupForm.value.userData.email,
@@ -103,7 +104,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
-          this.alertService.success('Registration was successful!!!');
+          this.alertService.success('Registration is successful!!!');
           // this.router.navigate(['/']);
         },
         err => {

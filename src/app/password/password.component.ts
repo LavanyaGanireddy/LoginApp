@@ -14,6 +14,7 @@ export class PasswordComponent implements OnInit {
   signupForm: FormGroup;
   email;
   token;
+  token1;
   constructor(private http: HttpClient,private alertService: AlertService,private examService: ExamService,private detailService: DetailService) { }
 
   ngOnInit() {
@@ -28,12 +29,12 @@ export class PasswordComponent implements OnInit {
   }
 
   password() {
-    this.examService.token1;
-console.log('ffgh',this.examService.token1);
+    this.token1=localStorage.getItem("token")
+console.log('ffgh',this.token1);
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'token': this.examService.token1
+    'token': this.token1
   })
 };
     this.http.post('http://172.17.15.68:3000/users/forgotPassword', {

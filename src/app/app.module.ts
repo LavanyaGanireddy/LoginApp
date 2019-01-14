@@ -13,11 +13,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ConfirmComponent } from './confirm/confirm.component';
+// import { ConfirmComponent } from './confirm/confirm.component';
 import { GetComponent } from './get/get.component';
 import { FirstComponent } from './first/first.component';
 import { ChangeComponent } from './change/change.component';
 import { PasswordComponent } from './password/password.component';
+
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 import {
   MatToolbarModule,
@@ -40,7 +43,7 @@ import {
 
 import { AlertService } from './alert.service';
 import { DetailService } from './detail.service';
-import { ConfirmService } from './confirm.service';
+// import { ConfirmService } from './confirm.service';
 import { StartComponent } from './start/start.component';
 import { ExamComponent } from './exam/exam.component';
 
@@ -53,7 +56,7 @@ import { ExamComponent } from './exam/exam.component';
     FirstComponent,
     ChangeComponent,
     PasswordComponent,
-    ConfirmComponent,
+    // ConfirmComponent,
     StartComponent,
     ExamComponent
   ],
@@ -94,7 +97,9 @@ import { ExamComponent } from './exam/exam.component';
       },
       {
         path: '',
-        component: GetComponent
+        component: GetComponent,
+        pathMatch: 'full', canActivate:
+          [AuthGuard]
       },
       {
         path: 'first',
@@ -115,10 +120,10 @@ import { ExamComponent } from './exam/exam.component';
     RegisterComponent,
     LoginComponent,
     PasswordComponent,
-    ConfirmComponent,
+    // ConfirmComponent,
     StartComponent
   ],
-  providers: [AlertService, DetailService, ConfirmService],
+  providers: [AlertService, DetailService, AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

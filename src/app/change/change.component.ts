@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient ,HttpHeaders} from '@angular/common/http';
-import { AlertService } from '../alert.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Validation } from './validation';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
+
 import { DetailService } from '../detail.service';
+import { AlertService } from '../alert.service';
 import { ExamService } from '../exam.service';
 
 @Component({
@@ -22,7 +24,8 @@ export class ChangeComponent implements OnInit {
   password;
   cpassword;
   token;
-  constructor(private http: HttpClient, private detailService: DetailService,private examService: ExamService, private alertService: AlertService, fb: FormBuilder, public dialogRef: MatDialogRef<ChangeComponent>) {
+  token1;
+  constructor(private http: HttpClient, private detailService: DetailService, private examService: ExamService, private alertService: AlertService, fb: FormBuilder, public dialogRef: MatDialogRef<ChangeComponent>) {
     this.signupForm = fb.group({
       password: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]],
       npassword: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]],
@@ -67,17 +70,17 @@ export class ChangeComponent implements OnInit {
   change() {
     this.email = this.detailService.email;
     console.log(this.email);
-    this.examService.token1;
-console.log('ffgh',this.examService.token1);
+    this.token1=localStorage.getItem("token")
+console.log('ffgh',this.token1);
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'token': this.examService.token1
+    'token': this.token1
   })
 };
     this.http.post('http://172.17.15.68:3000/users/changePassword?email=' + this.email, {
       password: this.cpassword
-    },httpOptions).subscribe(
+    }, httpOptions).subscribe(
       (data) => {
 
         console.log(data);

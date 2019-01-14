@@ -5,32 +5,32 @@
 </h1>
 <div class="margin">
 
-    <h2>Instructions to write the Exam:</h2>
-    <div style="margin-left:580px;">
-      <p>1. Write the exam within the time limit.</p>
-      <p>2. Please provide answers for all questions.</p>
-      <p>3. Please provide the answer in the blank.</p>
-    </div>
-   
+  <h2>Instructions to write the Exam:</h2>
+  <div style="margin-left:580px;">
+    <p>1. Write the exam within the time limit.</p>
+    <p>2. Please provide answers for all questions.</p>
+    <p>3. Please provide the answer in the blank.</p>
+  </div>
+
 </div>
 <mat-divider style="margin-bottom:20px;"></mat-divider>
 <div *ngFor="let res of response1" style="margin-left:40px;">
-  <!-- <form [formGroup]="signupForm"> -->
-    <div style="font-size: 18px;margin-top:10px;"><b>Question:</b> {{res.q}}</div>
-    <mat-radio-group style="font-size: 15px;">
-        <div><mat-radio-button [value]="1" style="margin-top:10px;" color=primary>{{res.o1}}</mat-radio-button></div>
-        <div><mat-radio-button [value]="2" style="margin-top:10px;" color=primary>{{res.o2}}</mat-radio-button></div>
-        <div><mat-radio-button [value]="3" style="margin-top:10px;" color=primary>{{res.o3}}</mat-radio-button></div>
-        <div><mat-radio-button [value]="4" style="margin-top:10px;margin-bottom:10px;" color=primary>{{res.o4}}</mat-radio-button></div>
-      </mat-radio-group>
-      <!-- formControlName="option"  -->
-    <!-- <div formGroupName="userData">
-      Answer:
-      <mat-form-field appearance="standard" style="width:40%;margin-bottom:10px;">
-        <input matInput formControlName="answer" required>
-      </mat-form-field>
-    </div> -->
-  <!-- </form> -->
+    <div style="font-size: 18px;margin-top:10px;">
+    <b>Question:</b> {{res.q}}</div>
+  <mat-radio-group style="font-size: 15px;">
+    <div>
+      <mat-radio-button [value]="1" style="margin-top:10px;" color=primary>{{res.o1}}</mat-radio-button>
+    </div>
+    <div>
+      <mat-radio-button [value]="2" style="margin-top:10px;" color=primary>{{res.o2}}</mat-radio-button>
+    </div>
+    <div>
+      <mat-radio-button [value]="3" style="margin-top:10px;" color=primary>{{res.o3}}</mat-radio-button>
+    </div>
+    <div>
+      <mat-radio-button [value]="4" style="margin-top:10px;margin-bottom:10px;" color=primary>{{res.o4}}</mat-radio-button>
+    </div>
+  </mat-radio-group>
 </div>
 <div class="button">
   <button mat-raised-button style="margin-left:585px;" (click)="cancel()" color=warn>Cancel</button>

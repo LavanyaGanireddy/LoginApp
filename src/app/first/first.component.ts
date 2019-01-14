@@ -6,9 +6,10 @@ import { MatDialog } from '@angular/material';
 import { ChangeComponent } from '../change/change.component';
 import { StartComponent } from '../start/start.component';
 import { DetailService } from '../detail.service';
-import { ConfirmService } from '../confirm.service';
+// import { ConfirmService } from '../confirm.service';
 import { AlertService } from '../alert.service';
 import { ExamService } from '../exam.service';
+import { AuthService } from '../auth.service';
 import { EmailValidator } from '../../../node_modules/@angular/forms';
 
 @Component({
@@ -50,7 +51,8 @@ export class FirstComponent implements OnInit {
   DB1001;
   NG1001;
   token;
-  constructor(private http: HttpClient, private router: Router, public dialog: MatDialog, private alertService: AlertService, private detailService: DetailService, private confirmService: ConfirmService, private examService: ExamService) {
+  token1;
+  constructor(private http: HttpClient,public auth: AuthService, private router: Router, public dialog: MatDialog, private alertService: AlertService, private detailService: DetailService, private examService: ExamService) {
     this.user = detailService.userName;
     console.log(this.user);
   }
@@ -86,14 +88,14 @@ export class FirstComponent implements OnInit {
   openConfirmationDialog() {
     this.email = this.detailService.email;
     console.log('email',this.email);
-    this.examService.token1;
-    console.log('ffgh',this.examService.token1);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': this.examService.token1
-      })
-    };
+    this.token1=localStorage.getItem("token")
+console.log('ffgh',this.token1);
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'token': this.token1
+  })
+};
       this.http.delete('http://172.17.15.68:3000/deleteUser?email=' + this.email,httpOptions)
         .subscribe(res => {
           // console.log(this.id);

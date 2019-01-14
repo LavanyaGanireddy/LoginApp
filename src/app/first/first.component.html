@@ -1,91 +1,44 @@
 <div class="container">
-    <!-- <div class="button">
-        <button mat-raised-button [routerLink]="['/']">Sign Out</button>
-    </div>
-
-    <h1>Hi </h1> -->
-
-    <!-- <mat-form-field>
-    <mat-select placeholder="Select Option" [(ngModel)]="option" required>
-        <mat-option>--</mat-option>
-        <mat-option>Change Password</mat-option>
-        <mat-option>Delete Account</mat-option>
-    </mat-select>
-</mat-form-field> -->
 
     <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutWrap fxLayoutGap="20px" fxLayoutAlign="center">
 
-        <!-- <mat-card class="example-card" fxFlex> -->
-            <h1><i class="fa fa-user-circle-o" style="font-size:50px;"></i>
-            <!-- <mat-card-title class="title" style="font-size:40px;"> -->
+        <h1>
+            <i class="fa fa-user-circle-o" style="font-size:50px;"></i>
             Online Certification
-                <!-- <mat-form-field>
-                            <mat-select placeholder="Select Option" [(ngModel)]="option" required>
-                                <mat-option>--</mat-option>
-                                <mat-option>Change Password</mat-option>
-                                <mat-option>Delete Account</mat-option>
-                            </mat-select>
-                        </mat-form-field> -->
-                <mat-accordion style="margin-right:20px;">
-                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <!-- Options -->Welcome {{this.user}}
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <img width="100" height="100" src="http://localhost:4200/assets/user.jpg" style="padding-left: 36px;">
-                        <mat-option (click)="edit()">Change Password</mat-option>
-                        <!-- <mat-divider></mat-divider> -->
-                        <mat-option (click)="openConfirmationDialog()">Delete Account</mat-option>
-                        <!-- <mat-divider></mat-divider> -->
-                        <mat-option (click)="logout()">Sign Out</mat-option>
-                    </mat-expansion-panel>
-                </mat-accordion></h1>
-            <!-- </mat-card-title> -->
-        <!-- </mat-card> -->
-        <!-- <span fxFlex="80%">{{picture.title}}</span> -->
-        <!-- <mat-card class="card-picture" *ngFor="let picture of pictures">
-            <mat-card-title fxLayout.xs="column">
-                <span fxFlex="80%">{{picture.title}}</span>
-               <mat-icon fxFlex="10%">mode_edit</mat-icon>
-            <mat-icon fxFlex="10%">delete</mat-icon>  
-            </mat-card-title>
-
-            <img mat-card-image [src]="picture.img">
-        </mat-card> -->
+            <mat-accordion style="margin-right:20px;">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Welcome {{this.user}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <img width="100" height="100" src="http://localhost:4200/assets/user.jpg" style="padding-left: 36px;">
+                    <mat-option *ngIf="!auth.isLoggednIn()" (click)="edit()">Change Password</mat-option>
+                    <mat-option *ngIf="!auth.isLoggednIn()" (click)="openConfirmationDialog()">Delete Account</mat-option>
+                    <mat-option *ngIf="auth.isLoggednIn()" (click)="auth.logout()">Sign Out</mat-option>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </h1>
     </div>
 
-        <div class="image" fxLayout.xs="column" fxLayout="row wrap" fxLayoutWrap fxLayoutGap="20px" fxLayoutAlign="center">
-                <!-- <mat-card-title *ngFor="let picture of pictures">
-                        <span fxFlex="80%">{{picture.title}}</span></mat-card-title> -->
-            <button (click)="openDialog('NS1101')" style="margin-right:20px;"><img src="http://localhost:4200/assets/node.png" width="190" height="190"></button>
-            <button (click)="openDialog('DB1001')" style="margin-right:20px;"><img src="http://localhost:4200/assets/mongo.jpg" width="190" height="190"></button>
-            <button (click)="openDialog('NG1001')" ><img src="http://localhost:4200/assets/angular.png" width="190" height="190"></button>
-            <!-- <mat-grid-tile>2</mat-grid-tile>
-            <mat-grid-tile>3</mat-grid-tile>
-            <mat-grid-tile>4</mat-grid-tile> -->
-            </div>
- 
-    <div class="contain" fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center">
-        <!-- <mat-card class="example-card" fxFlex> -->
-            <!-- <i class="fa fa-user-circle-o" style="font-size:50px;"></i> -->
-            <mat-card-title class="title" style="font-size:15px;padding-bottom: 10px;">@2019 Online Certification.
-                <!-- <p>Terms & Conditions</p> -->
-                <!-- <button mat-raised-button color=warn style="float:right;margin-left:20px;" (click)="register()">Sign Up</button>
-                <button mat-stroked-button class="button" style="float:right;" (click)="login()">Log In</button> -->
-            </mat-card-title>
+    <div class="image" fxLayout.xs="column" fxLayout="row wrap" fxLayoutWrap fxLayoutGap="20px" fxLayoutAlign="center">
+        <button (click)="openDialog('NS1101')" style="margin-right:20px;">
+            <img src="http://localhost:4200/assets/node.png" width="190" height="190">
+        </button>
+        <button (click)="openDialog('DB1001')" style="margin-right:20px;">
+            <img src="http://localhost:4200/assets/mongo.jpg" width="190" height="190">
+        </button>
+        <button (click)="openDialog('NG1001')">
+            <img src="http://localhost:4200/assets/angular.png" width="190" height="190">
+        </button>
+    </div>
 
-        <!-- </mat-card> -->
+    <div class="contain" fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center">
+        <mat-card-title class="title" style="font-size:15px;padding-bottom: 10px;">@2019 Online Certification.
+        </mat-card-title>
     </div>
 </div>
-<!-- {{currentUser.username}}! -->
-<!-- <h3>All registered users</h3> -->
-<!-- <ul>
-    <li *ngFor="let user of users">
-        {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-    </li>
-</ul> -->
+
 <!-- <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
