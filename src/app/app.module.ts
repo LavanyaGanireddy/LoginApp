@@ -19,7 +19,6 @@ import { StartComponent } from './start/start.component';
 import { ExamComponent } from './exam/exam.component';
 import { DeleteComponent } from './delete/delete.component';
 
-import { AuthService } from './auth.service';
 import { AlertService } from './alert.service';
 import { DetailService } from './detail.service';
 
@@ -116,7 +115,7 @@ import {
     DeleteComponent,
     StartComponent
   ],
-  providers: [AlertService, DetailService, AuthGuard, AuthService],
+  providers: [AlertService, DetailService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

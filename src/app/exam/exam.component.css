@@ -5,16 +5,19 @@ h1{
     padding-top:10px;
     padding-bottom:10px;
 }
-  h2 {
+
+h2 {
     color: #57acec;
     margin-top: 24px; 
     text-align: center;
 }
+
 .button{
     position:fixed;
     left:0;
     bottom: 0;
 }
+
 .margin{
   border: 1px solid  #57acec;
  

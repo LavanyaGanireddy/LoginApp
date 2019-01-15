@@ -15,6 +15,7 @@ import { DetailService } from '../detail.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   email1;
   password2;
   submitted = false;
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   img = "http://localhost:4200/assets/user.jpg";
   obj: any = [{}];
   public users$: Observable<DetailService[]>
+
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>, private detailService: DetailService) { }
 
   ngOnInit() {
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
       }),
     });
   }
+
   function() {
     this.x = document.getElementById("input");
     if (this.x.type === "password") {
@@ -44,6 +47,7 @@ export class LoginComponent implements OnInit {
       this.x.type = "password";
     }
   }
+
   doLogin(email, password) {
     console.log(email,"",password);
     this.detailService.retrieve(email, password);
@@ -56,6 +60,7 @@ export class LoginComponent implements OnInit {
       width: '550px'
     });
   }
+  
   password1() {
     const dialogRef = this.dialog.open(PasswordComponent, {
       height: '280px',

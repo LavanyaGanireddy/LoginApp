@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   token1;
+
   constructor(private http: HttpClient, public dialogRef: MatDialogRef<RegisterComponent>, private alertService: AlertService) { }
 
   countries = [
@@ -59,6 +60,7 @@ export class RegisterComponent implements OnInit {
       }),
     });
   }
+
   register() {
     console.log('Name is ', this.userName);
     console.log('Email is ', this.email);
@@ -68,6 +70,7 @@ export class RegisterComponent implements OnInit {
     console.log('Phone number is ', this.phoneNo);
     console.log('Qualification is ', this.qualification);
   }
+
   onSubmit() {
     this.token1 = localStorage.getItem("token")
     console.log('RegisterComponent', this.token1);
@@ -98,9 +101,11 @@ export class RegisterComponent implements OnInit {
       );
     this.dialogRef.close();
   }
+
   close() {
     this.dialogRef.close();
   }
+
   reset() {
     this.signupForm.reset();
   }

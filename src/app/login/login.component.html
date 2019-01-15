@@ -1,4 +1,3 @@
-
 <div class="container" fxLayout.xs="column" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
 
   <form align=center [formGroup]="signupForm" (ngSubmit)="doLogin(email,password)">
@@ -7,14 +6,13 @@
         <caption>
           <h1>Login Form</h1>
         </caption>
+        
         <tr>
           <mat-form-field appearance="fill">
             <mat-label>Enter your EmailId</mat-label>
             <input matInput formControlName="email" [(ngModel)]="email" required>
             <mat-icon matSuffix>email</mat-icon>
-            <!-- <mat-hint>e.g.:Enter valid email</mat-hint> -->
             <mat-error *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched">Please enter email!</mat-error>
-
           </mat-form-field>
         </tr>
 
@@ -23,18 +21,13 @@
             <mat-label>Enter your password</mat-label>
             <input matInput type=password formControlName="password" id="input" [(ngModel)]="password" required>
             <mat-icon matSuffix (click)="function()">visibility_off</mat-icon>
-            <!-- <mat-icon matSuffix>visibility</mat-icon> -->
-            <!-- <mat-hint>e.g.:6-10 characters!!!</mat-hint> -->
             <mat-error *ngIf="!signupForm.get('userData.password').valid && signupForm.get('userData.password').touched">Please enter password</mat-error>
-
           </mat-form-field>
         </tr>
 
         <h5 align=center (click)="password1()">Forgot password?</h5>
         <button mat-raised-button [disabled]="!signupForm.valid" color=primary>Submit</button>
-        <!--  (click)="doLogin(email,password)" -->
       </table>
     </div>
-    <!-- <h4 align=center (click)="register()">Register</h4> -->
   </form>
 </div>

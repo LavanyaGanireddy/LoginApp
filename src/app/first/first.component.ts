@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
@@ -9,8 +8,6 @@ import { StartComponent } from '../start/start.component';
 import { DeleteComponent } from '../delete/delete.component';
 
 import { DetailService } from '../detail.service';
-import { AuthService } from '../auth.service';
-
 
 @Component({
   selector: 'app-first',
@@ -18,13 +15,15 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./first.component.css']
 })
 export class FirstComponent implements OnInit {
+
   panelOpenState = false;
   email;
   password;
   user;
   token;
   token1;
-  constructor(public auth: AuthService, private router: Router, public dialog: MatDialog, private detailService: DetailService) {
+
+  constructor(private router: Router, public dialog: MatDialog, private detailService: DetailService) {
     this.user = detailService.userName;
     console.log('FirstComponent',this.user);
   }
@@ -47,7 +46,8 @@ export class FirstComponent implements OnInit {
   }
 
   logout(){
-    this.auth.logout();
+    localStorage.removeItem("token");
+    this.router.navigateByUrl('');
   }
 
   openDialog(subj) {
@@ -62,4 +62,5 @@ export class FirstComponent implements OnInit {
       }
     });
   }
+
 }

@@ -14,6 +14,7 @@ import { AlertService } from '../alert.service';
   styleUrls: ['./change.component.css']
 })
 export class ChangeComponent implements OnInit {
+
   signupForm: FormGroup;
   email;
   x;
@@ -24,6 +25,7 @@ export class ChangeComponent implements OnInit {
   cpassword;
   token;
   token1;
+  
   constructor(private http: HttpClient, private detailService: DetailService, private alertService: AlertService, fb: FormBuilder, public dialogRef: MatDialogRef<ChangeComponent>) {
     this.signupForm = fb.group({
       password: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]],

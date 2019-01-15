@@ -52,6 +52,5 @@ export class DetailService {
           this.router.navigateByUrl('/');
           this.alertService.warn('Registration failed!!!');
         });
-    // });
   }
 }

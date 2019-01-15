@@ -13,15 +13,19 @@ import { AlertService } from '../alert.service';
   styleUrls: ['./delete.component.css']
 })
 export class DeleteComponent implements OnInit {
+
   email;
   token1;
+
   constructor(private http: HttpClient, public dialogRef: MatDialogRef<DeleteComponent>, private router: Router, private detailService: DetailService, private alertService: AlertService) { }
 
   ngOnInit() {
   }
+
   close() {
     this.dialogRef.close();
   }
+  
   delete() {
     this.email = this.detailService.email;
     console.log('DeleteComponent', this.email);

@@ -12,11 +12,13 @@ import { AlertService } from '../alert.service';
   styleUrls: ['./password.component.css']
 })
 export class PasswordComponent implements OnInit {
+
   signupForm: FormGroup;
   email;
   token;
   token1;
-  constructor(private http: HttpClient,public dialogRef: MatDialogRef<PasswordComponent>, private alertService: AlertService) { }
+
+  constructor(private http: HttpClient, public dialogRef: MatDialogRef<PasswordComponent>, private alertService: AlertService) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -49,7 +51,7 @@ export class PasswordComponent implements OnInit {
         console.log('PasswordComponent...Error occured');
         this.alertService.warn('You are not registered yet!!!');
       });
-      this.dialogRef.close();
+    this.dialogRef.close();
   }
 
 }
