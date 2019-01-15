@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { AlertService } from '../alert.service';
-import { DetailService } from '../detail.service';
-import { ExamService } from '../exam.service';
 
 @Component({
   selector: 'app-register',
@@ -28,8 +26,7 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   token1;
-  constructor(private http: HttpClient, private router: Router,private examService: ExamService,private detailService: DetailService, public dialogRef: MatDialogRef<RegisterComponent>, private alertService: AlertService) { }
-  // , private alertService: AlertService
+  constructor(private http: HttpClient, public dialogRef: MatDialogRef<RegisterComponent>, private alertService: AlertService) { }
 
   countries = [
     'Afghanistan', 'Argentina', 'Australia',
@@ -72,26 +69,14 @@ export class RegisterComponent implements OnInit {
     console.log('Qualification is ', this.qualification);
   }
   onSubmit() {
-    // this.http.get('http://172.17.15.68:3000/users/tokenGen').subscribe(
-    //   (data) => {  
-    //     let d=this.token;      
-    //     let data1=data[d];
-    //     console.log(data);
-    //     console.log('Token is ', data1["token"]);             
-    //   });
-
-    // this.submitted = true;
-    // if (this.registerForm.invalid) {
-    //   return;
-    // }
-    this.token1=localStorage.getItem("token")
-console.log('ffgh',this.token1);
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'token': this.token1
-  })
-};
+    this.token1 = localStorage.getItem("token")
+    console.log('RegisterComponent', this.token1);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': this.token1
+      })
+    };
     this.http.post('http://172.17.15.68:3000/users/addUser', {
       userName: this.signupForm.value.userData.userName,
       email: this.signupForm.value.userData.email,
@@ -100,23 +85,22 @@ const httpOptions = {
       country: this.signupForm.value.userData.country,
       phoneNo: this.signupForm.value.userData.phoneNo,
       qualification: this.signupForm.value.userData.qualification
-    },httpOptions)
+    }, httpOptions)
       .subscribe(
         res => {
           console.log(res);
           this.alertService.success('Registration is successful!!!');
-          // this.router.navigate(['/']);
-        },
+          },
         err => {
-          console.log('Error occured');
+          console.log('RegisterComponent...Error occured');
           this.alertService.warn('Registration failed!!!');
         }
       );
-      this.dialogRef.close();
+    this.dialogRef.close();
   }
   close() {
     this.dialogRef.close();
-    }
+  }
   reset() {
     this.signupForm.reset();
   }

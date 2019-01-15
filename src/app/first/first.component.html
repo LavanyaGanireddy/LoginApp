@@ -13,9 +13,9 @@
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <img width="100" height="100" src="http://localhost:4200/assets/user.jpg" style="padding-left: 36px;">
-                    <mat-option *ngIf="!auth.isLoggednIn()" (click)="edit()">Change Password</mat-option>
-                    <mat-option *ngIf="!auth.isLoggednIn()" (click)="openConfirmationDialog()">Delete Account</mat-option>
-                    <mat-option *ngIf="auth.isLoggednIn()" (click)="auth.logout()">Sign Out</mat-option>
+                    <mat-option (click)="edit()">Change Password</mat-option>
+                    <mat-option (click)="delete()">Delete Account</mat-option>
+                    <mat-option (click)="logout()">Sign Out</mat-option>
                 </mat-expansion-panel>
             </mat-accordion>
         </h1>

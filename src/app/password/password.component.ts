@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatDialogRef } from '@angular/material';
+
 import { AlertService } from '../alert.service';
-import { DetailService } from '../detail.service';
-import { ExamService } from '../exam.service';
 
 @Component({
   selector: 'app-password',
@@ -15,7 +16,7 @@ export class PasswordComponent implements OnInit {
   email;
   token;
   token1;
-  constructor(private http: HttpClient,private alertService: AlertService,private examService: ExamService,private detailService: DetailService) { }
+  constructor(private http: HttpClient,public dialogRef: MatDialogRef<PasswordComponent>, private alertService: AlertService) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -29,21 +30,26 @@ export class PasswordComponent implements OnInit {
   }
 
   password() {
-    this.token1=localStorage.getItem("token")
-console.log('ffgh',this.token1);
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'token': this.token1
-  })
-};
+    this.token1 = localStorage.getItem("token")
+    console.log('PasswordComponent', this.token1);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': this.token1
+      })
+    };
     this.http.post('http://172.17.15.68:3000/users/forgotPassword', {
       email: this.signupForm.value.userData.email
-    },httpOptions).subscribe(
+    }, httpOptions).subscribe(
       (data) => {
         console.log(data);
         this.alertService.success('Password has been sent to your Email!!!');
+      },
+      err => {
+        console.log('PasswordComponent...Error occured');
+        this.alertService.warn('You are not registered yet!!!');
       });
+      this.dialogRef.close();
   }
 
 }

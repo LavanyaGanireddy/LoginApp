@@ -5,21 +5,24 @@ import { BrowserAnimationsModule } from '../../node_modules/@angular/platform-br
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSnackBarModule } from '@angular/material';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-// import { ConfirmComponent } from './confirm/confirm.component';
 import { GetComponent } from './get/get.component';
 import { FirstComponent } from './first/first.component';
 import { ChangeComponent } from './change/change.component';
 import { PasswordComponent } from './password/password.component';
+import { StartComponent } from './start/start.component';
+import { ExamComponent } from './exam/exam.component';
+import { DeleteComponent } from './delete/delete.component';
 
 import { AuthService } from './auth.service';
+import { AlertService } from './alert.service';
+import { DetailService } from './detail.service';
+
 import { AuthGuard } from './auth.guard';
 
 import {
@@ -41,12 +44,6 @@ import {
   MatSelectModule
 } from '@angular/material';
 
-import { AlertService } from './alert.service';
-import { DetailService } from './detail.service';
-// import { ConfirmService } from './confirm.service';
-import { StartComponent } from './start/start.component';
-import { ExamComponent } from './exam/exam.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,14 +53,13 @@ import { ExamComponent } from './exam/exam.component';
     FirstComponent,
     ChangeComponent,
     PasswordComponent,
-    // ConfirmComponent,
     StartComponent,
-    ExamComponent
+    ExamComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
     FlexLayoutModule,
-    NgbModule,
     MatRadioModule,
     MatExpansionModule,
     MatButtonToggleModule,
@@ -85,11 +81,10 @@ import { ExamComponent } from './exam/exam.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxDatatableModule,
     RouterModule.forRoot([
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
       },
       {
         path: 'register',
@@ -97,13 +92,12 @@ import { ExamComponent } from './exam/exam.component';
       },
       {
         path: '',
-        component: GetComponent,
-        pathMatch: 'full', canActivate:
-          [AuthGuard]
+        component: GetComponent
       },
       {
         path: 'first',
-        component: FirstComponent
+        component: FirstComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'change',
@@ -111,7 +105,6 @@ import { ExamComponent } from './exam/exam.component';
       },
       {
         path: 'exam',
-        pathMatch: 'full',
         component: ExamComponent
       }
     ])
@@ -120,7 +113,7 @@ import { ExamComponent } from './exam/exam.component';
     RegisterComponent,
     LoginComponent,
     PasswordComponent,
-    // ConfirmComponent,
+    DeleteComponent,
     StartComponent
   ],
   providers: [AlertService, DetailService, AuthGuard, AuthService],

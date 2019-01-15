@@ -7,7 +7,6 @@ import { MatDialogRef } from '@angular/material';
 
 import { DetailService } from '../detail.service';
 import { AlertService } from '../alert.service';
-import { ExamService } from '../exam.service';
 
 @Component({
   selector: 'app-change',
@@ -25,7 +24,7 @@ export class ChangeComponent implements OnInit {
   cpassword;
   token;
   token1;
-  constructor(private http: HttpClient, private detailService: DetailService, private examService: ExamService, private alertService: AlertService, fb: FormBuilder, public dialogRef: MatDialogRef<ChangeComponent>) {
+  constructor(private http: HttpClient, private detailService: DetailService, private alertService: AlertService, fb: FormBuilder, public dialogRef: MatDialogRef<ChangeComponent>) {
     this.signupForm = fb.group({
       password: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]],
       npassword: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]],
@@ -37,7 +36,7 @@ export class ChangeComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.detailService.email;
-    console.log(this.user);
+    console.log('ChangeComponent',this.user);
   }
 
   function() {
@@ -69,25 +68,28 @@ export class ChangeComponent implements OnInit {
 
   change() {
     this.email = this.detailService.email;
-    console.log(this.email);
-    this.token1=localStorage.getItem("token")
-console.log('ffgh',this.token1);
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'token': this.token1
-  })
-};
+    console.log('ChangeComponent',this.email);
+    this.token1 = localStorage.getItem("token")
+    console.log('ChangeComponent', this.token1);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': this.token1
+      })
+    };
     this.http.post('http://172.17.15.68:3000/users/changePassword?email=' + this.email, {
       password: this.cpassword
     }, httpOptions).subscribe(
       (data) => {
-
-        console.log(data);
-        console.log(this.password)
-        console.log(this.detailService.email);
+        console.log('ChangeComponent',data);
+        console.log('ChangeComponent',this.password)
+        console.log('ChangeComponent',this.detailService.email);
         this.dialogRef.close();
         this.alertService.success('Password has been changed successfully!!!');
+      },
+      err => {
+        console.log('ChangeComponent...Error occured');
+        this.alertService.warn('Your old password is incorrect!!!');
       });
   }
 
