@@ -9,6 +9,9 @@ export class ExamService {
 
   token1;
   constructor(private http: HttpClient) {
+    
+  }
+  getToken() {
     this.http.get('http://172.17.15.68:3000/users/tokenGen').subscribe(
       (data) => {
         this.token1 = data.token;

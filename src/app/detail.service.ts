@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { ExamService } from './exam.service'
 import { AlertService } from './alert.service';
 
 @Injectable({
@@ -17,15 +17,16 @@ export class DetailService {
   email;
   token1;
 
-  constructor(private http: HttpClient, private router: Router, private alertService: AlertService) { }
+  constructor(private http: HttpClient, private router: Router, private alertService: AlertService,private examService : ExamService) { }
 
   public retrieve(email, password) {
+    this.examService.getToken()
     this.token1 = localStorage.getItem("token")
     console.log('DetailService', this.token1);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'token': this.token1
+        'token': localStorage.getItem("token")
       })
     };
     this.http.post('http://172.17.15.68:3000/users/userLogin/', {
@@ -50,7 +51,7 @@ export class DetailService {
         err => {
           console.log('DetailService...Error occured');
           this.router.navigateByUrl('/');
-          this.alertService.warn('Registration failed!!!');
+          this.alertService.warn('Login failed!!!');
         });
   }
 }
