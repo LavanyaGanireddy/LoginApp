@@ -29,7 +29,7 @@ export class DeleteComponent implements OnInit {
   delete() {
     this.email = this.detailService.email;
     console.log('DeleteComponent', this.email);
-    this.token1 = localStorage.getItem("token")
+    this.token1 = localStorage.getItem("token");
     console.log('DeleteComponent', this.token1);
     const httpOptions = {
       headers: new HttpHeaders({
@@ -37,7 +37,7 @@ export class DeleteComponent implements OnInit {
         'token': this.token1
       })
     };
-    this.http.delete('http://172.17.15.68:3000/deleteUser?email=' + this.email, httpOptions)
+    this.http.post('http://172.17.15.68:3000/deleteUser' +'?email='+ this.email, httpOptions)
       .subscribe(res => {
         console.log('DeleteComponent',res);
         this.router.navigateByUrl('/');
