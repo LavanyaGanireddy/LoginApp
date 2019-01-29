@@ -4,7 +4,7 @@
         <h1>
             <i class="fa fa-user-circle-o" style="font-size:50px;"></i>
             Online Certification
-            <mat-accordion style="margin-right:20px;">
+            <mat-menu style="margin-right:20px;">
                 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -16,7 +16,7 @@
                     <mat-option (click)="delete()">Delete Account</mat-option>
                     <mat-option (click)="logout()">Sign Out</mat-option>
                 </mat-expansion-panel>
-            </mat-accordion>
+            </mat-menu>
         </h1>
     </div>
 

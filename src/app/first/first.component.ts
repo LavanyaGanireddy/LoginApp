@@ -25,7 +25,7 @@ export class FirstComponent implements OnInit {
 
   constructor(private router: Router, public dialog: MatDialog, private detailService: DetailService) {
     this.user = detailService.userName;
-    console.log('FirstComponent',this.user);
+    console.log('FirstComponent', this.user);
   }
 
   ngOnInit() {
@@ -42,10 +42,10 @@ export class FirstComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteComponent, {
       height: '250px',
       width: '320px'
-    });  
+    });
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem("token");
     this.router.navigateByUrl('');
   }

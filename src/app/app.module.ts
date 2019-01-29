@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSnackBarModule } from '@angular/material';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -61,6 +62,7 @@ import {
     FlexLayoutModule,
     MatRadioModule,
     MatExpansionModule,
+    MatMenuModule,
     MatButtonToggleModule,
     MatGridListModule,
     MatSnackBarModule,
